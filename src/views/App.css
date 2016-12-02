@@ -42,7 +42,7 @@
 .App-nav-items {
   color: lightgray;
   display: flex;
-  margin-left: 30%;
+  justify-content: center;
   margin-top: 10px;
 }
 
