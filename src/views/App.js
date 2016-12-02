@@ -8,6 +8,7 @@ import LocationWarningView from './location-warning';
 import MainContentView from './main-content';
 
 import { LOCATION_ERRORS, VIEW_FLOW } from '../constants';
+import { extractUserLatLong } from '../utils/user-location';
 import {
   updateCurrentView as updateCurrentViewAction,
   updateLocationAttribute as updateLocationAttributeAction,
@@ -33,7 +34,7 @@ class AppView extends React.Component {
     if (navigator && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          updateLocationAttribute({ userPosition: position });
+          updateLocationAttribute({ userPosition: extractUserLatLong(position) });
           updateCurrentView(VIEW_FLOW.MAIN_CONTENT);
         },
         () => {
