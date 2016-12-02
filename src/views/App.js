@@ -66,6 +66,15 @@ class AppView extends React.Component {
       );
     }
 
+    let navItemText = 'About';
+    let navItemClickHandler = (e) => this.handleNavClick(e, VIEW_FLOW.ABOUT);
+
+    if (currentView === VIEW_FLOW.ABOUT) {
+      navItemText = 'Ok ok, back to it then';
+      navItemClickHandler = (e) => this.handleNavClick(e, VIEW_FLOW.MAIN_CONTENT);
+    }
+
+
     const CurrentView = VIEWS[currentView];
 
     return (
@@ -77,8 +86,8 @@ class AppView extends React.Component {
           <img src={topImage} className="App-top-image" alt="Tony Hawk tweet" />
 
           <div className="App-nav-items">
-            <div className="App-nav-item" onClick={(e) => this.handleNavClick(e, VIEW_FLOW.ABOUT)}>
-              About
+            <div className="App-nav-item" onClick={navItemClickHandler}>
+              {navItemText}
             </div>
           </div>
         </div>
