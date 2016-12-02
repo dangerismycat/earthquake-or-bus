@@ -58,13 +58,13 @@ class AppView extends React.Component {
       currentView,
     } = this.props;
 
-    if (currentView === VIEW_FLOW.LOADING_ANIMATION) {
-      return (
-        <div className="App App-loader">
-          <LoadingAnimationView />
-        </div>
-      );
-    }
+    // if (currentView === VIEW_FLOW.LOADING_ANIMATION) {
+    //   return (
+    //     <div className="App App-loader">
+    //       <LoadingAnimationView />
+    //     </div>
+    //   );
+    // }
 
     const CurrentView = VIEWS[currentView];
 
@@ -72,15 +72,18 @@ class AppView extends React.Component {
       <div className="App">
 
         <div className="App-header">
-          <img src={topImage} className="App-top-image" alt="Tony Hawk tweet" />
           <div className="App-title-text">Earthquake or Bus?</div>
-          <span className="App-header-about" onClick={(e) => this.handleNavClick(e, VIEW_FLOW.ABOUT)}>
-            About
-          </span>
+          <img src={topImage} className="App-top-image" alt="Tony Hawk tweet" />
+
+          <div className="App-nav-items">
+            <div className="App-nav-item" onClick={(e) => this.handleNavClick(e, VIEW_FLOW.ABOUT)}>
+              About
+            </div>
+          </div>
         </div>
 
         <div className="App-content">
-          <CurrentView />
+          <AboutView />
         </div>
 
       </div>
