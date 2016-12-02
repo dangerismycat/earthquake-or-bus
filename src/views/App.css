@@ -1,0 +1,34 @@
+.App {
+  text-align: center;
+  --background-color: #2d2d2d;
+}
+
+.App-loader {
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.App-top-image {
+  border-radius: 5px;
+  height: 80px;
+}
+
+.App-header {
+  background-color: var(--background-color);
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.App-title-text {
+  font-size: xx-large;
+  padding: 20px;
+}

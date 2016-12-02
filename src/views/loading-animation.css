@@ -1,0 +1,25 @@
+.loader-block {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  --loading-animation: lightgray;
+}
+
+.loader-text {
+  color: var(--loading-animation);
+  padding: 25px;
+  width: 100%;
+}
+
+.loader-animation {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 25px;
+  transform: translate(35%, 30%);
+  width: 100%;
+}
+
+.cube1, .cube2 {
+  background-color: var(--loading-animation);
+}
