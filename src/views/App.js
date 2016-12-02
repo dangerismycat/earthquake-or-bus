@@ -58,13 +58,13 @@ class AppView extends React.Component {
       currentView,
     } = this.props;
 
-    // if (currentView === VIEW_FLOW.LOADING_ANIMATION) {
-    //   return (
-    //     <div className="App App-loader">
-    //       <LoadingAnimationView />
-    //     </div>
-    //   );
-    // }
+    if (currentView === VIEW_FLOW.LOADING_ANIMATION) {
+      return (
+        <div className="App App-loader">
+          <LoadingAnimationView />
+        </div>
+      );
+    }
 
     const CurrentView = VIEWS[currentView];
 
@@ -73,6 +73,7 @@ class AppView extends React.Component {
 
         <div className="App-header">
           <div className="App-title-text">Earthquake or Bus?</div>
+          <div className="App-subtitle-text">(Did you feel that??)</div>
           <img src={topImage} className="App-top-image" alt="Tony Hawk tweet" />
 
           <div className="App-nav-items">
@@ -83,7 +84,7 @@ class AppView extends React.Component {
         </div>
 
         <div className="App-content">
-          <AboutView />
+          <CurrentView />
         </div>
 
       </div>

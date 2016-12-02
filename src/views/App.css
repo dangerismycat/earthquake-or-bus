@@ -14,11 +14,6 @@
   height: 100vh;
 }
 
-.App-top-image {
-  border-radius: 5px;
-  height: 80px;
-}
-
 .App-header {
   background-color: var(--background-color);
   height: flex;
@@ -29,13 +24,26 @@
 .App-title-text {
   font-size: 4em;
   font-weight: bold;
-  padding: 20px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
+.App-subtitle-text {
+  font-size: 1.25em;
+  padding: 10px;
+}
+
+.App-top-image {
+  border-radius: 5px;
+  height: 80px;
+  padding: 5px;
 }
 
 .App-nav-items {
   color: lightgray;
   display: flex;
-  margin-left: 30%
+  margin-left: 30%;
+  margin-top: 10px;
 }
 
 .App-nav-item {
@@ -46,6 +54,7 @@
   align-items: center;
   position: relative;
   display: inline-block;
+  font-size: small;
 }
 
 .App-nav-item:hover {
