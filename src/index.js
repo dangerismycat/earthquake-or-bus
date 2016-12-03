@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 import store from './store';
 import AppView from './views/App';
-import './index.css';
+import './stylesheets/index.css';
 
 const target = document.getElementById('root');
 const node = (

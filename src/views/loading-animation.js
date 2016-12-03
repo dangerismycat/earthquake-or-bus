@@ -1,7 +1,7 @@
 import React from 'react';
 import Spinner from 'react-spinkit';
 
-import './loading-animation.css';
+import '../stylesheets/loading-animation.css';
 
 function LoadingAnimation() {
   return (

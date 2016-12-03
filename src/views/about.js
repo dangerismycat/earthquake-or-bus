@@ -3,7 +3,7 @@ import React from 'react';
 import aboutImage from '../images/about.jpg';
 import moreYouKnowImage from '../images/themoreyouknow.gif';
 
-import './about.css';
+import '../stylesheets/about.css';
 
 const githubURL = 'https://github.com/dangerismycat/earthquake-or-bus';
 const montyPythonURL = 'https://www.youtube.com/watch?v=PF9FECorcZ0';

@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { ERRORS } from '../constants';
-import './location-warning.css';
+import '../stylesheets/location-warning.css';
 
 function LocationWarning(props) {
   const { locationError } = props;

@@ -15,7 +15,7 @@ import {
 } from '../action-creators';
 
 import topImage from '../images/earthquakebus.jpg';
-import './App.css';
+import '../stylesheets/App.css';
 
 
 const VIEWS = {

@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 
+import '../stylesheets/main-content.css';
+
 function MainContentView(props) {
   return (
     <div>
