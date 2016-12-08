@@ -13,6 +13,7 @@
     "react-scripts": "0.7.0"
   },
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "lodash": "^4.17.2",
     "morgan": "^1.7.0",
@@ -20,7 +21,11 @@
     "react-dom": "^15.4.1",
     "react-redux": "^4.4.6",
     "react-spinkit": "^1.1.11",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "redux-devtools-extension": "^1.0.0",
+    "redux-thunk": "^2.1.0",
+    "request": "^2.79.0",
+    "request-promise": "^4.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
