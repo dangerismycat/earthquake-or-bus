@@ -10,6 +10,7 @@ import MainContentView from './main-content';
 import { LOCATION_ERRORS, VIEW_FLOW } from '../constants';
 import { extractUserLatLong } from '../utils/user-location';
 import {
+  postUserLocationThunk,
   updateCurrentView as updateCurrentViewAction,
   updateLocationAttribute as updateLocationAttributeAction,
 } from '../action-creators';
@@ -27,6 +28,7 @@ const VIEWS = {
 class AppView extends React.Component {
   componentDidMount() {
     const {
+      postUserLocation,
       updateCurrentView,
       updateLocationAttribute,
     } = this.props;
@@ -34,10 +36,12 @@ class AppView extends React.Component {
     if (navigator && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          updateLocationAttribute({ userPosition: extractUserLatLong(position) });
+          const userPosition = extractUserLatLong(position);
+          postUserLocation(userPosition);
+          updateLocationAttribute({ userPosition });
           updateCurrentView(VIEW_FLOW.MAIN_CONTENT);
         },
-        () => {
+        (error) => {
           updateLocationAttribute({ locationError: LOCATION_ERRORS.NO_LOCATION });
           updateCurrentView(VIEW_FLOW.LOCATION_WARNING);
         },
@@ -107,6 +111,7 @@ AppView.propTypes = {
   locationError: PropTypes.any,
   userPosition: PropTypes.any,
   // actions
+  postUserLocation: PropTypes.func,
   updateCurrentView: PropTypes.func,
   updateLocationAttribute: PropTypes.func,
 };
@@ -121,6 +126,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
+    postUserLocation: postUserLocationThunk,
     updateCurrentView: updateCurrentViewAction,
     updateLocationAttribute: updateLocationAttributeAction,
   }, dispatch);
