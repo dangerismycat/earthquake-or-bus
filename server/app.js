@@ -3,6 +3,8 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
 
+const muniHandler = require('./muni');
+
 const app = express();
 
 // Setup logger
@@ -11,6 +13,8 @@ app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:htt
 app.use(bodyParser.json());
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
+
+app.post('/api/muni', muniHandler.getMuniData);
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
