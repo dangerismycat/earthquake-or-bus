@@ -1,12 +1,14 @@
 const express = require('express');
 const morgan = require('morgan');
+const bodyParser = require('body-parser');
 const path = require('path');
 
 const app = express();
 
 // Setup logger
 app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
-
+// Let's parse some json
+app.use(bodyParser.json());
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
 
