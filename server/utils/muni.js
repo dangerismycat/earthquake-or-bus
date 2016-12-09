@@ -1,5 +1,10 @@
-// All we care about is the current time (for caching) and the vehicle's name and lat/long
-function processMuniResponse(response) {
+const { sortBy } = require('lodash');
+
+const MATH = require('./math');
+
+// All we care about is the vehicle's name, line reference, and distance from the user.
+// Returns sorted array of vehicles, smallest-distance-from-user first
+function processMuniResponse(response, userLatLong) {
   if (!response.Siri || !response.Siri.ServiceDelivery ||
     !response.Siri.ServiceDelivery.VehicleMonitoringDelivery ||
     !response.Siri.ServiceDelivery.VehicleMonitoringDelivery.VehicleActivity) {
@@ -7,19 +12,23 @@ function processMuniResponse(response) {
     return {};
   }
 
-  const currentTime = Date.now();
-
   const vehicleArray = response.Siri.ServiceDelivery.VehicleMonitoringDelivery.VehicleActivity;
-  const processedVehicleArray = vehicleArray.map((vehicle) => ({
-    name: vehicle.MonitoredVehicleJourney.PublishedLineName,
-    lat: vehicle.MonitoredVehicleJourney.VehicleLocation.Latitude,
-    long: vehicle.MonitoredVehicleJourney.VehicleLocation.Longitude,
-  }));
+  const processedVehicleArray = vehicleArray.map((vehicle) => {
+    const name = vehicle.MonitoredVehicleJourney.PublishedLineName;
+    const lineRef = vehicle.MonitoredVehicleJourney.LineRef;
+    const lat = vehicle.MonitoredVehicleJourney.VehicleLocation.Latitude;
+    const long = vehicle.MonitoredVehicleJourney.VehicleLocation.Longitude;
 
-  return {
-    currentTime,
-    vehicles: processedVehicleArray,
-  };
+    const distance = MATH.distanceBetweenTwoPoints(userLatLong, { lat, long });
+
+    return {
+      name,
+      lineRef,
+      distance,
+    };
+  });
+
+  return sortBy(processedVehicleArray, 'distance');
 }
 
 // 511's API yields a string with an invalid first character, so it needs to be removed
@@ -32,6 +41,7 @@ function stupidMuniAPIWorkaround(response) {
   }
   return response;
 }
+
 
 module.exports = {
   processMuniResponse,
