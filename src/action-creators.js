@@ -1,5 +1,5 @@
 import { ACTIONS, LOCATION_ERRORS, VIEW_FLOW } from './constants';
-import { isInSF } from '.utils/user-location';
+import { isInSF } from './utils/user-location';
 
 const dataURLs = {
   postUserLocation: '/api/muni',
