@@ -28,6 +28,7 @@ function processMuniResponse(response, userLatLong) {
     };
   });
 
+  console.log(`Total vehicles data received: ${processedVehicleArray.length}`);
   return sortBy(processedVehicleArray, 'distance');
 }
 

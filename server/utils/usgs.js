@@ -24,6 +24,7 @@ function processUSGSResponse(response, userLatLong) {
     };
   });
 
+  console.log(`Total earthquakes data received: ${processedEarthquakeArray.length}`);
   return sortBy(processedEarthquakeArray, 'distance');
 }
 
