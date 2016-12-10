@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 const muniHandler = require('./muni');
+const usgsHandler = require('./usgs');
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
 
 app.post('/api/muni', muniHandler.getMuniData);
+app.post('/api/usgs', usgsHandler.getNearbyEarthquakes);
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
