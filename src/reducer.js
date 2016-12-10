@@ -2,6 +2,14 @@ import { ACTIONS, VIEW_FLOW } from './constants';
 
 import createReducer from './utils/create-reducer';
 
+
+function updateAttribute(state, { payload }) {
+  return {
+    ...state,
+    ...payload,
+  }
+}
+
 function updateCurrentView(state, { view }) {
   return {
     ...state,
@@ -9,26 +17,10 @@ function updateCurrentView(state, { view }) {
   };
 }
 
-function updateLocationAttribute(state, { attribute }) {
-  return {
-    ...state,
-    ...attribute,
-  }
-}
-
-function updateNearbyVehicles(state, { closestFiveVehicles }) {
-  return {
-    ...state,
-    closestFiveVehicles,
-  };
-}
-
-
 
 const handlers = {
+  [ACTIONS.UPDATE_ATTRIBUTE]: updateAttribute,
   [ACTIONS.UPDATE_CURRENT_VIEW]: updateCurrentView,
-  [ACTIONS.UPDATE_LOCATION_ATTRIBUTE]: updateLocationAttribute,
-  [ACTIONS.UPDATE_VEHICLE_LOCATIONS]: updateNearbyVehicles,
 };
 
 const initialState = {

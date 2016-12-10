@@ -7,6 +7,13 @@ const dataURLs = {
 };
 
 
+export function updateAttribute(attribute) {
+  return {
+    type: ACTIONS.UPDATE_ATTRIBUTE,
+    payload: attribute,
+  };
+}
+
 export function updateCurrentView(view) {
   return {
     type: ACTIONS.UPDATE_CURRENT_VIEW,
@@ -14,26 +21,12 @@ export function updateCurrentView(view) {
   };
 }
 
-// TODO: rename this to reflect more generic use
-export function updateLocationAttribute(attribute) {
-  return {
-    type: ACTIONS.UPDATE_LOCATION_ATTRIBUTE,
-    attribute,
-  };
-}
-
-function updateNearbyVehicles(closestFiveVehicles) {
-  return {
-    type: ACTIONS.UPDATE_NEARBY_VEHICLES,
-    closestFiveVehicles,
-  };
-}
 
 // ASYNC THUNKS
 export function getNearbyVehiclesThunk({ lat, long }) {
   return (dispatch) => {
     if (!isInSF({ lat, long })) {
-      dispatch(updateLocationAttribute({ locationsError: LOCATION_ERRORS.OUTSIDE_SF }));
+      dispatch(updateAttribute({ locationsError: LOCATION_ERRORS.OUTSIDE_SF }));
       dispatch(updateCurrentView(VIEW_FLOW.LOCATION_WARNING));
       return;
     }
@@ -50,7 +43,7 @@ export function getNearbyVehiclesThunk({ lat, long }) {
     .then((response) => response.json().then((json) => {
       console.log('got some Muni data:', json)
       const { closestFiveVehicles } = json;
-      dispatch(updateLocationAttribute({ closestFiveVehicles }));
+      dispatch(updateAttribute({ closestFiveVehicles }));
     })
     .catch((error) => {
       // TODO: better error handling
@@ -63,7 +56,7 @@ export function getRecentEarthquakesThunk({ lat, long }) {
   return (dispatch) => {
     // TODO: consolidate this check with other thunk
     if (!isInSF({ lat, long })) {
-      dispatch(updateLocationAttribute({ locationsError: LOCATION_ERRORS.OUTSIDE_SF }));
+      dispatch(updateAttribute({ locationsError: LOCATION_ERRORS.OUTSIDE_SF }));
       dispatch(updateCurrentView(VIEW_FLOW.LOCATION_WARNING));
       return;
     }
@@ -78,7 +71,7 @@ export function getRecentEarthquakesThunk({ lat, long }) {
     .then((response) => response.json().then((json) => {
       console.log('got some USGS data:', json)
       const { recentNearbyEarthquakes } = json;
-      dispatch(updateLocationAttribute({ recentNearbyEarthquakes }));
+      dispatch(updateAttribute({ recentNearbyEarthquakes }));
     })
     .catch((error) => {
       // TODO: better error handling
