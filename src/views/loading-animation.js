@@ -5,11 +5,13 @@ import '../stylesheets/loading-animation.css';
 
 function LoadingAnimation() {
   return (
-    <div className="loader-block">
-      <div className="loader-text">
-        Getting your location...
+    <div className="loader">
+      <div className="loader-block">
+        <div className="loader-text">
+          Getting your location...
+        </div>
+        <Spinner spinnerName="wandering-cubes" className="loader-animation" />
       </div>
-      <Spinner spinnerName="wandering-cubes" className="loader-animation" />
     </div>
   );
 }
