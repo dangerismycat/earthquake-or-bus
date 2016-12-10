@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import store from './store';
-import AppView from './views/App';
+import AppView from './App';
 import './stylesheets/index.css';
 
 const target = document.getElementById('root');
