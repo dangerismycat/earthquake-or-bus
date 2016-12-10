@@ -16,10 +16,10 @@ function updateLocationAttribute(state, { attribute }) {
   }
 }
 
-function updateVehicleLocations(state, { locationsArray }) {
+function updateNearbyVehicles(state, { closestFiveVehicles }) {
   return {
     ...state,
-    vehicles: locationsArray,
+    closestFiveVehicles,
   };
 }
 
@@ -28,14 +28,15 @@ function updateVehicleLocations(state, { locationsArray }) {
 const handlers = {
   [ACTIONS.UPDATE_CURRENT_VIEW]: updateCurrentView,
   [ACTIONS.UPDATE_LOCATION_ATTRIBUTE]: updateLocationAttribute,
-  [ACTIONS.UPDATE_VEHICLE_LOCATIONS]: updateVehicleLocations,
+  [ACTIONS.UPDATE_VEHICLE_LOCATIONS]: updateNearbyVehicles,
 };
 
 const initialState = {
   currentView: VIEW_FLOW.LOADING_ANIMATION,
   locationError: null,
   userPosition: null,
-  vehicles: [],
+  closestFiveVehicles: [],
+  recentNearbyEarthquakes: [],
 };
 
 export default createReducer(initialState, handlers);
