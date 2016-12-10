@@ -14,22 +14,13 @@ export function extractUserLatLong(positionObject) {
 }
 
 export function isInSF(userLatLong) {
-  if (isInNorthSouthBounds(userLatLong.lat) && isInEastWestBounds(userLatLong.long)) {
-    return true;
-  }
-  return false;
+  return (isInNorthSouthBounds(userLatLong.lat) && isInEastWestBounds(userLatLong.long));
 }
 
 function isInNorthSouthBounds(lat) {
-  if (lat < SF_BOUNDARIES.NORTH && lat > SF_BOUNDARIES.SOUTH) {
-    return true;
-  }
-  return false;
+  return (lat < SF_BOUNDARIES.NORTH && lat > SF_BOUNDARIES.SOUTH);
 }
 
 function isInEastWestBounds(long) {
-  if (long < SF_BOUNDARIES.EAST && long > SF_BOUNDARIES.WEST) {
-    return true;
-  }
-  return false;
+  return (long < SF_BOUNDARIES.EAST && long > SF_BOUNDARIES.WEST);
 }
