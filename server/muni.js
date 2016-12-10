@@ -15,7 +15,7 @@ function getMuniData(req, res) {
   request({
     method: 'GET',
     uri: muniURL,
-    gzip: true
+    gzip: true,
   })
   .then((response) => {
     const sanitizedResponse = MUNI_HELPERS.stupidMuniAPIWorkaround(response);

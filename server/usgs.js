@@ -15,7 +15,7 @@ function getNearbyEarthquakes(req, res) {
   request({
     method: 'GET',
     uri: usgsURL,
-    gzip: true
+    gzip: true,
   })
   .then((response) => {
     const parsedJson = JSON.parse(response);
