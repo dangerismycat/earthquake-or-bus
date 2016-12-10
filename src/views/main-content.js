@@ -1,8 +1,13 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 
 import '../stylesheets/main-content.css';
 
 function MainContentView(props) {
+  if (props.vehicles && props.vehicles.length) {
+    console.log('vehicles:', props.vehicles);
+  }
+
   return (
     <div>
       <p className="App-intro">
@@ -12,6 +17,14 @@ function MainContentView(props) {
   );
 }
 
-MainContentView.propTypes = {};
+MainContentView.propTypes = {
+  vehicles: PropTypes.array,
+};
 
-export default MainContentView;
+function mapStateToProps(state) {
+  return {
+    vehicles: state.vehicles,
+  };
+}
+
+export default connect(mapStateToProps)(MainContentView);

@@ -10,9 +10,10 @@ import MainContentView from './main-content';
 import { LOCATION_ERRORS, VIEW_FLOW } from '../constants';
 import { extractUserLatLong } from '../utils/user-location';
 import {
-  postUserLocationThunk,
+  getNearbyVehiclesThunk,
+  getRecentEarthquakesThunk,
   updateCurrentView as updateCurrentViewAction,
-  updateLocationAttribute as updateLocationAttributeAction,
+  updateAttribute as updateAttributeAction,
 } from '../action-creators';
 
 import topImage from '../images/earthquakebus.jpg';
@@ -28,26 +29,28 @@ const VIEWS = {
 class AppView extends React.Component {
   componentDidMount() {
     const {
-      postUserLocation,
+      getNearbyVehicles,
+      getRecentEarthquakes,
       updateCurrentView,
-      updateLocationAttribute,
+      updateAttribute,
     } = this.props;
 
     if (navigator && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const userPosition = extractUserLatLong(position);
-          postUserLocation(userPosition);
-          updateLocationAttribute({ userPosition });
+          getNearbyVehicles(userPosition);
+          getRecentEarthquakes(userPosition);
+          updateAttribute({ userPosition });
           updateCurrentView(VIEW_FLOW.MAIN_CONTENT);
         },
         (error) => {
-          updateLocationAttribute({ locationError: LOCATION_ERRORS.NO_LOCATION });
+          updateAttribute({ locationError: LOCATION_ERRORS.NO_LOCATION });
           updateCurrentView(VIEW_FLOW.LOCATION_WARNING);
         },
       );
     } else {
-      updateLocationAttribute({ locationError: LOCATION_ERRORS.NO_LOCATION});
+      updateAttribute({ locationError: LOCATION_ERRORS.NO_LOCATION});
       updateCurrentView(VIEW_FLOW.LOCATION_WARNING);
     }
   }
@@ -111,9 +114,10 @@ AppView.propTypes = {
   locationError: PropTypes.any,
   userPosition: PropTypes.any,
   // actions
-  postUserLocation: PropTypes.func,
+  getNearbyVehicles: PropTypes.func,
+  getRecentEarthquakes: PropTypes.func,
   updateCurrentView: PropTypes.func,
-  updateLocationAttribute: PropTypes.func,
+  updateAttribute: PropTypes.func,
 };
 
 function mapStateToProps(state) {
@@ -126,9 +130,10 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    postUserLocation: postUserLocationThunk,
+    getNearbyVehicles: getNearbyVehiclesThunk,
+    getRecentEarthquakes: getRecentEarthquakesThunk,
     updateCurrentView: updateCurrentViewAction,
-    updateLocationAttribute: updateLocationAttributeAction,
+    updateAttribute: updateAttributeAction,
   }, dispatch);
 }
 
