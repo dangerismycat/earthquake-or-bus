@@ -1,31 +1,32 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { ERRORS } from '../constants';
+import { LOCATION_ERRORS } from '../constants';
+
 import '../stylesheets/location-warning.css';
+
 
 function LocationWarning(props) {
   const { locationError } = props;
 
-  // if (!locationError) {
-  //   return null;
-  // }
+  let warningText = `
+    That's weird. Some unknown error happened...please refresh and try again!
+  `;
+  const refreshButton = <input className="location-warning-refresh-button" type="button"
+                               value="Refresh!" onClick={() => window.location.reload(true)} />;
 
-  let warningText = null;
-  const refreshButton = <input type="button" value="Refresh!" onClick={() => window.location.reload(true)} />;
-
-  if (locationError === ERRORS.OUTSIDE_SF) {
+  if (locationError === LOCATION_ERRORS.OUTSIDE_SF) {
     warningText = `
       Hm...it looks like you're trying to use this app from outside San Francisco.
-      Unfortunately it's only set up with SF data...sorry about that!
+      Unfortunately it only works within SF...sorry about that!
     `;
-  } else if (locationError === ERRORS.NO_LOCATION) {
+  } else if (locationError === LOCATION_ERRORS.NO_LOCATION) {
     warningText = `
       Hm...it looks like you don't have location services turned on.
-      Unfortunately we need to know where you are to determine what you just felt.
+      This app needs to know where you are to determine what you just felt.
       Please refresh the page and allow location services in order to use this app.
     `;
-  } else if (locationError === ERRORS.LOCATION_ERROR) {
+  } else if (locationError === LOCATION_ERRORS.LOCATION_ERROR) {
     warningText = `
       Hm...it looks like there was an error detecting your location.
       Please refresh and try again!
@@ -37,7 +38,7 @@ function LocationWarning(props) {
       <div className="location-warning-text">
         {warningText}
       </div>
-      {locationError !== ERRORS.OUTSIDE_SF ? refreshButton : null}
+      {locationError !== LOCATION_ERRORS.OUTSIDE_SF ? refreshButton : null}
     </div>
   );
 }
