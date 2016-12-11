@@ -12,7 +12,7 @@ function About() {
   return (
     <div className="about-block">
       <div className="about-title">
-        What's all this about, then?
+        Right, what's all this about, then?
       </div>
 
       <a href={montyPythonURL} target="_blank" rel="noopener noreferrer">
@@ -20,18 +20,20 @@ function About() {
       </a>
 
       <div className="about-text">
-        If you live in San Francisco — especially in an older building — <br />
-        you're probably felt unidentified shaking before. It's always a mystery: <br />
-        was that an earthquake? Or did a bus just drive by? <br />
-        <br />
-        NOW YOU KNOW!
+        If you live in San Francisco, especially in an older building,
+        you're probably felt unidentified shaking before. It's always a mystery:
+        was that an earthquake? Or did a bus just drive by?
       </div>
 
-      <img className="about-more-you-know" src={moreYouKnowImage} alt="The More You Know" />
+      <div className="about-more-you-know-block">
+        <div className="about-more-you-know-text">
+          NOW YOU KNOW!
+        </div>
+        <img className="about-more-you-know" src={moreYouKnowImage} alt="The More You Know" />
+      </div>
 
       <div className="about-author">
-        This site was created by Ryan James to solve a constant question in his apartment. <br />
-        Check it out on <a href={githubURL} target="_blank" rel="noopener noreferrer">Github</a> if you want!
+        Check this out on <a href={githubURL} target="_blank" rel="noopener noreferrer">Github</a> if you dare!
       </div>
     </div>
   );
