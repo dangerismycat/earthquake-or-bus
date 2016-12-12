@@ -19,12 +19,12 @@ function processMuniResponse(response, userLatLong) {
     const lat = vehicle.MonitoredVehicleJourney.VehicleLocation.Latitude;
     const long = vehicle.MonitoredVehicleJourney.VehicleLocation.Longitude;
 
-    const distance = MATH.distanceBetweenTwoPoints(userLatLong, { lat, long });
+    const distanceInMeters = MATH.distanceBetweenTwoPoints(userLatLong, { lat, long });
 
     return {
       name,
       lineRef,
-      distance,
+      distance: MATH.convertMetersToFeet(distanceInMeters),
     };
   });
 

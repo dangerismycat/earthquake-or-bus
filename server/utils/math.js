@@ -20,6 +20,14 @@ function distanceBetweenTwoPoints(latLong1, latLong2) {
   return R * c;
 }
 
+function convertMetersToFeet(number) {
+  return number * 3.280839895;
+}
+
+function convertMetersToMiles(number) {
+  return number * 0.000621371192;
+}
+
 function toDegrees(number) {
   return number * 180 / Math.PI;
 }
@@ -29,5 +37,7 @@ function toRadians(number) {
 }
 
 module.exports = {
+  convertMetersToFeet,
+  convertMetersToMiles,
   distanceBetweenTwoPoints,
 };
