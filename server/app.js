@@ -8,6 +8,8 @@ const usgsHandler = require('./usgs');
 
 const app = express();
 
+// Don't crash the whole party on an error
+process.on('uncaughtException', console.error);
 // Setup logger
 app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
 // Let's parse some json
