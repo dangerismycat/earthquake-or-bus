@@ -24,11 +24,12 @@ const handlers = {
 };
 
 const initialState = {
+  closestFiveVehicles: [],
   currentView: VIEW_FLOW.LOADING_ANIMATION,
   locationError: null,
-  userPosition: null,
-  closestFiveVehicles: [],
+  mainView: null,
   recentNearbyEarthquakes: [],
+  userPosition: null,
 };
 
 export default createReducer(initialState, handlers);

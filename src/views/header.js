@@ -13,7 +13,6 @@ class Header extends React.Component {
     super(props, context);
 
     this.handleAboutClick = this.handleNavClick.bind(this, VIEW_FLOW.ABOUT);
-    this.handleMainContentClick = this.handleNavClick.bind(this, VIEW_FLOW.MAIN_CONTENT);
   }
 
   handleNavClick(view) {
@@ -21,8 +20,9 @@ class Header extends React.Component {
   }
 
   render() {
-    const { currentView } = this.props;
+    const { currentView, mainView } = this.props;
 
+    this.handleMainContentClick = this.handleNavClick.bind(this, mainView);
     const navItemText = currentView === VIEW_FLOW.ABOUT ? 'Ok ok, back to it then' : 'About';
     const navItemClickHandler = currentView === VIEW_FLOW.ABOUT ?
       this.handleMainContentClick : this.handleAboutClick;
@@ -31,7 +31,7 @@ class Header extends React.Component {
       <div className="header">
         <div className="header-title-text">
           <div className="header-title-text-line">Earthquake</div>
-          <div className="header-title-text-line">or</div>
+          <div className="header-title-text-line-smaller">or</div>
           <div className="header-title-text-line">Bus?</div>
         </div>
         <div className="header-subtitle-text">(Did you feel that??)</div>
@@ -48,6 +48,7 @@ class Header extends React.Component {
 
 Header.propTypes = {
   currentView: PropTypes.string,
+  mainView: PropTypes.string,
   // actions
   updateCurrentView: PropTypes.func,
 };
@@ -55,6 +56,7 @@ Header.propTypes = {
 function mapStateToProps(state) {
   return {
     currentView: state.currentView,
+    mainView: state.mainView,
   };
 }
 
