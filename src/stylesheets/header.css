@@ -17,6 +17,10 @@
   display: block;
 }
 
+.header-title-text-line-smaller {
+  font-size: smaller;
+}
+
 .header-subtitle-text {
   font-size: 3.5vw;
   padding: 10px 0 2px 0;
