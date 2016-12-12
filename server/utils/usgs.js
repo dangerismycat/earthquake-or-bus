@@ -1,3 +1,4 @@
+const moment = require('moment');
 const { sortBy } = require('lodash');
 
 const MATH = require('./math');
@@ -12,14 +13,15 @@ function processUSGSResponse(response, userLatLong) {
   const processedEarthquakeArray = response.features.map((quake) => {
     const lat = quake.geometry.coordinates[1];
     const long = quake.geometry.coordinates[0];
-    const distance = MATH.distanceBetweenTwoPoints(userLatLong, { lat, long });
+    const distanceInMeters = MATH.distanceBetweenTwoPoints(userLatLong, { lat, long });
+    const timeDifference = moment(quake.properties.time).fromNow();
 
     return {
       description: quake.properties.title,
       distance,
       location: quake.properties.place,
       magnitude: quake.properties.mag,
-      time: quake.properties.time,
+      timeDifference,
       url: quake.properties.url,
     };
   });
