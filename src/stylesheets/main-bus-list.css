@@ -1,0 +1,18 @@
+.main-bus {
+  background-color: lightgray;
+  margin: 10px auto 5px auto;
+  width: 75%;
+}
+
+.main-bus-list {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.main-bus-list-item {
+  background-color: var(--mid-gray);
+  border: 2px solid var(--background-color);
+  border-radius: 5px;
+  margin-top: 3px;
+}
