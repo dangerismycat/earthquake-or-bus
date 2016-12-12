@@ -52,6 +52,7 @@ function getMuniData({ lat, long }, dispatch) {
     console.log('got some Muni data:', json)
     const { closestFiveVehicles } = json;
     dispatch(updateAttribute({ closestFiveVehicles }));
+    dispatch(updateAttribute({ loaded: true }));
   })
   .catch((error) => {
     // TODO: better error handling

@@ -6,7 +6,9 @@ import AboutView from './views/about';
 import HeaderView from './views/header'
 import LoadingAnimationView from './views/loading-animation';
 import LocationWarningView from './views/location-warning';
-import MainContentView from './views/main-content';
+import MainBusView from './views/main/nothing';
+import MainEarthquakeView from './views/main/earthquake-list';
+import MainNothingView from './views/main/bus-list';
 
 import { LOCATION_ERRORS, VIEW_FLOW } from './constants';
 import { extractUserLatLong } from './utils/user-location';
@@ -23,12 +25,28 @@ const VIEWS = {
   [VIEW_FLOW.ABOUT]: AboutView,
   [VIEW_FLOW.LOADING_ANIMATION]: LoadingAnimationView,
   [VIEW_FLOW.LOCATION_WARNING]: LocationWarningView,
-  [VIEW_FLOW.MAIN_CONTENT]: MainContentView,
+  [VIEW_FLOW.MAIN_BUS]: MainBusView,
+  [VIEW_FLOW.MAIN_EARTHQUAKE]: MainEarthquakeView,
+  [VIEW_FLOW.MAIN_NOTHING]: MainNothingView,
 };
 
 class AppView extends React.Component {
   componentDidMount() {
     this.bootAppData();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.loaded && nextProps.loaded !== this.props.loaded) {
+      const { closestFiveVehicles, recentNearbyEarthquakes } = nextProps;
+
+      if (!closestFiveVehicles.length && !recentNearbyEarthquakes.length) {
+        this.setMainView(VIEW_FLOW.MAIN_NOTHING);
+      } else if (recentNearbyEarthquakes.length) {
+        this.setMainView(VIEW_FLOW.MAIN_EARTHQUAKE);
+      } else if (closestFiveVehicles.length) {
+        this.setMainView(VIEW_FLOW.MAIN_BUS);
+      }
+    }
   }
 
   bootAppData() {
@@ -49,7 +67,6 @@ class AppView extends React.Component {
         const userPosition = extractUserLatLong(position);
         getNearbyData(userPosition);
         updateAttribute({ userPosition });
-        updateCurrentView(VIEW_FLOW.MAIN_CONTENT);
       },
       (error) => {
         updateAttribute({ locationError: LOCATION_ERRORS.NO_LOCATION });
@@ -58,10 +75,14 @@ class AppView extends React.Component {
     );
   }
 
+  setMainView(view) {
+    this.props.updateAttribute({ mainView: view });
+    this.props.updateCurrentView(view);
+  }
+
   render() {
-    // const CurrentView = VIEWS[this.props.currentView];
+    const CurrentView = VIEWS[this.props.currentView];
     // const CurrentView = VIEWS[VIEW_FLOW.MAIN_CONTENT];
-    const CurrentView = VIEWS[VIEW_FLOW.LOADING_ANIMATION];
 
     return (
       <div className="App">
@@ -88,8 +109,11 @@ AppView.propTypes = {
 
 function mapStateToProps(state) {
   return {
+    closestFiveVehicles: state.closestFiveVehicles,
     currentView: state.currentView,
+    loaded: state.loaded,
     locationError: state.locationError,
+    recentNearbyEarthquakes: state.recentNearbyEarthquakes,
     userPosition: state.userPosition,
   };
 }

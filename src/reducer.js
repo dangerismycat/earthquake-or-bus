@@ -26,6 +26,7 @@ const handlers = {
 const initialState = {
   closestFiveVehicles: [],
   currentView: VIEW_FLOW.LOADING_ANIMATION,
+  loaded: false,
   locationError: null,
   mainView: null,
   recentNearbyEarthquakes: [],
