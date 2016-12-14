@@ -11,8 +11,5 @@
 }
 
 .main-bus-list-item {
-  background-color: var(--mid-gray);
-  border: 2px solid var(--background-color);
-  border-radius: 5px;
   margin-top: 3px;
 }

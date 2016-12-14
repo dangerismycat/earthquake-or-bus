@@ -7,7 +7,7 @@ function BusListItem(props) {
   const { name, lineRef, distance } = props;
 
   return (
-    <div className="bus-list-item">
+    <div className="button bus-list-item">
       The {lineRef} {name} is about {distance} feet away...
     </div>
   );
