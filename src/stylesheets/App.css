@@ -20,3 +20,15 @@
   display: block;
   height: flex;
 }
+
+.button {
+  background-color: var(--mid-gray);
+  border: 1px solid var(--background-color);
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px black;
+}
+
+.button:active {
+  box-shadow: 0 0 0.5px black;
+  transform: translate(1px, 1px);
+}
