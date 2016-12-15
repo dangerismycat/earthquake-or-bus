@@ -82,7 +82,6 @@ class AppView extends React.Component {
 
   render() {
     const CurrentView = VIEWS[this.props.currentView];
-    // const CurrentView = VIEWS[VIEW_FLOW.MAIN_CONTENT];
 
     return (
       <div className="App">
