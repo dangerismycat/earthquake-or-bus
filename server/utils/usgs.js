@@ -21,6 +21,7 @@ function processUSGSResponse(response, userLatLong) {
       distance: MATH.convertMetersToMiles(distanceInMeters),
       location: quake.properties.place,
       magnitude: quake.properties.mag,
+      time: quake.properties.time,
       timeDifference,
       url: quake.properties.url,
     };
