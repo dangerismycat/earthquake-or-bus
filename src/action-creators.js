@@ -30,18 +30,22 @@ export function getNearbyDataThunk({ lat, long }) {
       return;
     }
 
-    console.log('fetching...')
-    console.log(`Lat: ${lat}, Long: ${long}`);
-    getMuniData({ lat, long }, dispatch);
-    getUSGSData({ lat, long }, dispatch);
+    Promise.all([
+      getData(dataURLs.muni, { lat, long }),
+      getData(dataURLs.usgs, { lat, long }),
+    ])
+    .then((data) => {
+      data.forEach((datum) => dispatch(updateAttribute(datum)));
+    })
+    .then(() => dispatch(updateAttribute({ loaded: true })));
   };
 }
 
 
 // HELPERS
 
-function getMuniData({ lat, long }, dispatch) {
-  fetch(dataURLs.muni, {
+function getData(url, { lat, long }) {
+  return fetch(url, {
     method: 'POST',
     body: JSON.stringify({ lat, long }),
     headers: {
@@ -49,29 +53,7 @@ function getMuniData({ lat, long }, dispatch) {
     },
   })
   .then((response) => response.json().then((json) => {
-    console.log('got some Muni data:', json)
-    const { closestFiveVehicles } = json;
-    dispatch(updateAttribute({ closestFiveVehicles }));
-    dispatch(updateAttribute({ loaded: true }));
-  })
-  .catch((error) => {
-    // TODO: better error handling
-    console.error(`Error from server: ${error}`);
-  }));
-}
-
-function getUSGSData({ lat, long }, dispatch) {
-  fetch(dataURLs.usgs, {
-    method: 'POST',
-    body: JSON.stringify({ lat, long }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-  .then((response) => response.json().then((json) => {
-    console.log('got some USGS data:', json)
-    const { recentNearbyEarthquakes } = json;
-    dispatch(updateAttribute({ recentNearbyEarthquakes }));
+    return json;
   })
   .catch((error) => {
     // TODO: better error handling
