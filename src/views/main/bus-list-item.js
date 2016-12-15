@@ -4,18 +4,17 @@ import '../../stylesheets/main-bus-list.css';
 
 
 function BusListItem(props) {
-  const { name, lineRef, distance } = props;
+  const { name, distance } = props;
 
   return (
     <div className="button bus-list-item">
-      The {lineRef} {name} is about {distance} feet away...
+      The {name} is about {Math.round(distance)} feet away...
     </div>
   );
 }
 
 BusListItem.propTypes = {
   name: PropTypes.string,
-  lineRef: PropTypes.string,
   distance: PropTypes.number,
 };
 
