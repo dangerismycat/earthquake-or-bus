@@ -1,7 +1,7 @@
 .main-bus {
   background-color: lightgray;
   margin: 10px auto 5px auto;
-  width: 75%;
+  padding-bottom: 10px;
 }
 
 .main-bus-list {
