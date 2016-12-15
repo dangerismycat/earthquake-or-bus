@@ -6,9 +6,9 @@ import AboutView from './views/about';
 import HeaderView from './views/header'
 import LoadingAnimationView from './views/loading-animation';
 import LocationWarningView from './views/location-warning';
-import MainBusView from './views/main/nothing';
+import MainNothingView from './views/main/nothing';
 import MainEarthquakeView from './views/main/earthquake-list';
-import MainNothingView from './views/main/bus-list';
+import MainBusView from './views/main/bus-list';
 
 import { LOCATION_ERRORS, VIEW_FLOW } from './constants';
 import { extractUserLatLong } from './utils/user-location';
