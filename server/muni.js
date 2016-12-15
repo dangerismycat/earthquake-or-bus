@@ -1,8 +1,8 @@
 const request = require('request-promise');
 
-const API_KEYS = require('../secrets');
 const MUNI_HELPERS = require('./utils/muni');
-const muniURL = `http://api.511.org/transit/vehiclemonitoring?api_key=${API_KEYS.API_KEY_511}&format=json&agency=sf-muni`;
+const MUNI_API_KEY = process.env.NODE_ENV === 'production' ? process.env.API_KEY_511 : require('../secrets').API_KEY_511;
+const muniURL = `http://api.511.org/transit/vehiclemonitoring?api_key=${MUNI_API_KEY}&format=json&agency=sf-muni`;
 // This is in feet
 const nearbyDistance = 1300;
 
