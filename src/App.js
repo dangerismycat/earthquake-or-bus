@@ -37,14 +37,14 @@ class AppView extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.loaded && nextProps.loaded !== this.props.loaded) {
-      const { closestFiveVehicles, recentNearbyEarthquakes } = nextProps;
-
-      if (!closestFiveVehicles.length && !recentNearbyEarthquakes.length) {
-        this.setMainView(VIEW_FLOW.MAIN_NOTHING);
-      } else if (recentNearbyEarthquakes.length) {
+      if (nextProps.recentNearbyEarthquakes.length > 0) {
         this.setMainView(VIEW_FLOW.MAIN_EARTHQUAKE);
-      } else if (closestFiveVehicles.length) {
+        return;
+      } else if (nextProps.closestFiveVehicles.length > 0) {
         this.setMainView(VIEW_FLOW.MAIN_BUS);
+        return;
+      } else {
+        this.setMainView(VIEW_FLOW.MAIN_NOTHING);
       }
     }
   }
