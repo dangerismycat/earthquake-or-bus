@@ -22,14 +22,20 @@ function processMuniResponse(response, userLatLong) {
     const distanceInMeters = MATH.distanceBetweenTwoPoints(userLatLong, { lat, long });
 
     return {
-      name,
-      lineRef,
+      name: formatName({ lineRef, name }),
       distance: MATH.convertMetersToFeet(distanceInMeters),
     };
   });
 
   console.log(`Total vehicles data received: ${processedVehicleArray.length}`);
   return sortBy(processedVehicleArray, 'distance');
+}
+
+function formatName({ lineRef, name }) {
+  // concat lineRef if not already present in name
+  const nameWithLineRef = name.includes(lineRef) ? name : `${lineRef}-${name}`;
+  // replace spaces with hyphens for consistency
+  return nameWithLineRef.replace(/\s/g, '-');
 }
 
 // 511's API yields a string with an invalid first character, so it needs to be removed
