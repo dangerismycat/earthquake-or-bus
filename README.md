@@ -71,3 +71,4 @@ dependencies and add the various dependencies and scripts it includes.
 - add support for other cities (anywhere a public transit API is available that
 gives current vehicle positions)
 - add "demo mode" to spoof locations/earthquakes for demo capabilities
+- deploy using `https` for use on modern desktop browsers
