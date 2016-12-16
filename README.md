@@ -6,8 +6,8 @@ felt unidentified shaking before. It's always a mystery: was that an earthquake?
 Or did a bus just drive by?
 
 This app gets the user's location data and then fetches local earthquakes from
-the USGS and current vehicle positions from Muni. Using a simple, easily-
-tweakable algorithm to determine if an earthquake was significant enough to have
+the USGS and current vehicle positions from Muni. Using a simple, easily-tweakable
+algorithm to determine if an earthquake was significant enough to have
 been felt by the user, the app then yields a clickable list of possible
 earthquakes or a list of nearby busses.
 
