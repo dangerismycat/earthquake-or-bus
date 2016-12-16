@@ -70,3 +70,4 @@ dependencies and add the various dependencies and scripts it includes.
 - better error handling
 - add support for other cities (anywhere a public transit API is available that
 gives current vehicle positions)
+- add "demo mode" to spoof locations/earthquakes for demo capabilities
