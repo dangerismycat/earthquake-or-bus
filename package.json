@@ -2,6 +2,9 @@
   "name": "earthquake-or-bus",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+      "node": "6.9.1"
+    },
   "devDependencies": {
     "babel-eslint": "^7.0.0",
     "eslint": "^3.8.1",
