@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import AboutView from './views/about';
+import DemoView from './views/demo';
 import HeaderView from './views/header'
 import LoadingAnimationView from './views/loading-animation';
 import LocationWarningView from './views/location-warning';
@@ -23,6 +24,7 @@ import './stylesheets/App.css';
 
 const VIEWS = {
   [VIEW_FLOW.ABOUT]: AboutView,
+  [VIEW_FLOW.DEMO]: DemoView,
   [VIEW_FLOW.LOADING_ANIMATION]: LoadingAnimationView,
   [VIEW_FLOW.LOCATION_WARNING]: LocationWarningView,
   [VIEW_FLOW.MAIN_BUS]: MainBusView,

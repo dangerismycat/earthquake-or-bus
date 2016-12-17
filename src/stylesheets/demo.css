@@ -1,0 +1,24 @@
+.demo-block {
+  background-color: lightgray;
+  height: 100%;
+}
+
+.demo-text {
+  margin: 7px auto 5px auto;
+  width: 75%;
+}
+
+.demo-button-block {}
+
+.demo-button {
+  background-color: white;
+  border: 5px black;
+  border-radius: 5px;
+  color: var(--background-color);
+  display: inline-block;
+  margin: 5px;
+}
+
+.demo-button:active {
+  background-color: lightgray;
+}
