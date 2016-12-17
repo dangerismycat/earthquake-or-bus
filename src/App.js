@@ -97,8 +97,11 @@ class AppView extends React.Component {
 }
 
 AppView.propTypes = {
+  closestFiveVehicles: PropTypes.array,
   currentView: PropTypes.string,
+  loaded: PropTypes.bool,
   locationError: PropTypes.any,
+  recentNearbyEarthquakes: PropTypes.array,
   userPosition: PropTypes.any,
   // actions
   getNearbyData: PropTypes.func,
