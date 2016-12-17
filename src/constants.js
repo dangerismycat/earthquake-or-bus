@@ -3,6 +3,29 @@ export const ACTIONS = {
   UPDATE_CURRENT_VIEW: 'UPDATE_CURRENT_VIEW',
 };
 
+export const DEMO_LOCATIONS = {
+  CASTRO_THEATRE: {
+    lat: 37.762012,
+    long: -122.435049,
+    name: 'Castro Theatre',
+  },
+  FILLMORE: {
+    lat: 37.784167,
+    long: -122.432975,
+    name: 'The Fillmore',
+  },
+  MISSION_CLIFFS: {
+    lat: 37.760911,
+    long: -122.412645,
+    name: 'Mission Cliffs',
+  },
+  TRANSAMERICA: {
+    lat: 37.795191,
+    long: -122.402883,
+    name: 'Transamerica Pyramid',
+  },
+};
+
 export const LOCATION_ERRORS = {
   LOCATION_ERROR: 'LOCATION_ERROR',
   NO_LOCATION: 'NO_LOCATION',
@@ -11,6 +34,7 @@ export const LOCATION_ERRORS = {
 
 export const VIEW_FLOW = {
   ABOUT: 'ABOUT',
+  DEMO: 'DEMO',
   LOADING_ANIMATION: 'LOADING_ANIMATION',
   LOCATION_WARNING: 'LOCATION_WARNING',
   MAIN_BUS: 'MAIN_BUS',
