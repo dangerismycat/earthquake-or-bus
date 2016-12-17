@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import { LOCATION_ERRORS } from '../constants';
+import { LOCATION_ERRORS, VIEW_FLOW } from '../constants';
+import { updateCurrentView as updateCurrentViewAction } from '../action-creators';
 
 import '../stylesheets/location-warning.css';
 
@@ -35,16 +37,25 @@ function LocationWarning(props) {
 
   return (
     <div className="location-warning">
-      <div className="location-warning-text">
-        {warningText}
+      <div className="location-warning-box">
+        <div className="location-warning-text">
+          {warningText}
+        </div>
+        {locationError !== LOCATION_ERRORS.OUTSIDE_SF ? refreshButton : null}
+        <div className="location-demo">
+          <input className="location-demo-button" type="button"
+                 value="Whatever, just show me a demo"
+                 onClick={() => props.updateCurrentView(VIEW_FLOW.DEMO)}
+          />
+        </div>
       </div>
-      {locationError !== LOCATION_ERRORS.OUTSIDE_SF ? refreshButton : null}
     </div>
   );
 }
 
 LocationWarning.propTypes = {
   locationError: PropTypes.object,
+  updateCurrentView: PropTypes.func,
 };
 
 function mapStateToProps(state) {
@@ -53,4 +64,10 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(LocationWarning);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    updateCurrentView: updateCurrentViewAction,
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LocationWarning);

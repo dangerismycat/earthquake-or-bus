@@ -1,4 +1,9 @@
 .location-warning {
+  background-color: lightgray;
+  height: 100%;
+}
+
+.location-warning-box {
   background-color: var(--kool-dj-red-alert);
   border: 10px black;
   border-radius: 5px;
@@ -9,7 +14,7 @@
 .location-warning-text {
   color: var(--background-color);
   font-size: 3vh;
-  margin: 2vh auto 2vh auto;
+  margin: 2vh auto 1vh auto;
   padding: 1.5vh 0 1.5vh 0;
   text-align: center;
   width: 75%;
@@ -24,5 +29,21 @@
 }
 
 .location-warning-refresh-button:active {
+  background-color: lightgray;
+}
+
+.location-demo {
+
+}
+
+.location-demo-button {
+  background-color: white;
+  border: 5px black;
+  border-radius: 5px;
+  color: var(--background-color);
+  margin-bottom: 2vh;
+}
+
+.location-demo-button:active {
   background-color: lightgray;
 }
