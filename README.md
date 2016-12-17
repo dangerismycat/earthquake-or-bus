@@ -11,6 +11,10 @@ algorithm to determine if an earthquake was significant enough to have
 been felt by the user, the app then yields a clickable list of possible
 earthquakes or a list of nearby busses.
 
+Demo Mode: if the user is not in SF or chooses not to allow location services, they
+can still demo the app using the available button on the error screen. The user will
+be presented with four places in SF to use the app "from".
+
 
 ## Technical Bits
 
