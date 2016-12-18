@@ -3,9 +3,9 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
 
-const certsHandler = require('./certs');
 const muniHandler = require('./muni');
 const usgsHandler = require('./usgs');
+const letsEncryptReponse = process.env.CERTBOT_RESPONSE;
 
 const app = express();
 
@@ -20,7 +20,7 @@ app.use(express.static(path.resolve(__dirname, '..', 'build')));
 
 app.post('/api/muni', muniHandler.getMuniData);
 app.post('/api/usgs', usgsHandler.getNearbyEarthquakes);
-app.get('/.well-known/acme-challenge/FTsHz7fsFu_TDoK8m56U_zSRssK851DmfPgYh6xJbGk', certsHandler.acmeChallenge);
+app.get('/.well-known/acme-challenge/:content', (req, res) => res.send(letsEncryptReponse));
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
