@@ -7,7 +7,7 @@ function EarthquakeListItem(props) {
   const { description, distance, location, magnitude, timeDifference, url } = props;
 
   return (
-    <div className="button main-earthquake-list-item">
+    <div className="large-button main-earthquake-list-item">
       <a href={url} target="_blank" rel="noopener noreferrer">
         <div className="main-earthquake-list-item-title">
           {description}

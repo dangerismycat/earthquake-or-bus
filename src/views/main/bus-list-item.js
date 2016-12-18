@@ -7,7 +7,7 @@ function BusListItem(props) {
   const { name, distance } = props;
 
   return (
-    <div className="button bus-list-item">
+    <div className="large-button bus-list-item">
       The {name} is about {Math.round(distance)} feet away
     </div>
   );

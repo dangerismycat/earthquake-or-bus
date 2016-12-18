@@ -21,9 +21,21 @@
   height: flex;
 }
 
-.button {
+.large-button {
   background-color: var(--mid-gray);
   border: 1px solid var(--background-color);
   border-radius: 5px;
   box-shadow: 1px 1px 1px black;
+}
+
+.small-button {
+  background-color: white;
+  border: 5px black;
+  border-radius: 5px;
+  color: var(--background-color);
+  margin-bottom: 2vh;
+}
+
+.small-button:active {
+  background-color: lightgray;
 }

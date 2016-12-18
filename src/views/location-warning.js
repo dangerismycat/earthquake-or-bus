@@ -14,7 +14,7 @@ function LocationWarning(props) {
   let warningText = `
     That's weird. Some unknown error happened...please refresh and try again!
   `;
-  const refreshButton = <input className="location-warning-refresh-button" type="button"
+  const refreshButton = <input className="small-button location-warning-refresh-button" type="button"
                                value="Refresh!" onClick={() => window.location.reload(true)} />;
 
   if (locationError === LOCATION_ERRORS.OUTSIDE_SF) {
@@ -43,7 +43,7 @@ function LocationWarning(props) {
         </div>
         {locationError !== LOCATION_ERRORS.OUTSIDE_SF ? refreshButton : null}
         <div className="location-demo">
-          <input className="location-demo-button" type="button"
+          <input className="small-button location-demo-button" type="button"
                  value="Whatever, just show me a demo"
                  onClick={() => props.updateCurrentView(VIEW_FLOW.DEMO)}
           />

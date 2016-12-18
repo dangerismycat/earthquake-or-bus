@@ -20,30 +20,14 @@
   width: 75%;
 }
 
-.location-warning-refresh-button {
-  background-color: white;
-  border: 5px black;
-  border-radius: 5px;
-  color: var(--background-color);
-  margin-bottom: 2vh;
-}
+.location-warning-refresh-button {}
 
-.location-warning-refresh-button:active {
-  background-color: lightgray;
-}
+.location-warning-refresh-button:active {}
 
 .location-demo {
 
 }
 
-.location-demo-button {
-  background-color: white;
-  border: 5px black;
-  border-radius: 5px;
-  color: var(--background-color);
-  margin-bottom: 2vh;
-}
+.location-demo-button {}
 
-.location-demo-button:active {
-  background-color: lightgray;
-}
+.location-demo-button:active {}
