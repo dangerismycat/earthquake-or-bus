@@ -22,7 +22,7 @@ export function updateCurrentView(view) {
 
 
 // ASYNC THUNKS
-export function getNearbyDataThunk({ lat, long }) {
+export function getNearbyDataThunk({ lat, long, level = 'MID' }) {
   return (dispatch) => {
     if (!isInSF({ lat, long })) {
       dispatch(updateAttribute({ locationsError: LOCATION_ERRORS.OUTSIDE_SF }));
@@ -32,7 +32,7 @@ export function getNearbyDataThunk({ lat, long }) {
 
     Promise.all([
       getData(dataURLs.muni, { lat, long }),
-      getData(dataURLs.usgs, { lat, long }),
+      getData(dataURLs.usgs, { lat, long, level }),
     ])
     .then((data) => {
       data.forEach((datum) => dispatch(updateAttribute(datum)));
@@ -44,10 +44,10 @@ export function getNearbyDataThunk({ lat, long }) {
 
 // HELPERS
 
-function getData(url, { lat, long }) {
+function getData(url, { lat, long, level }) {
   return fetch(url, {
     method: 'POST',
-    body: JSON.stringify({ lat, long }),
+    body: JSON.stringify({ lat, long, level }),
     headers: {
       'Content-Type': 'application/json',
     },

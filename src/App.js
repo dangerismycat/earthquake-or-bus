@@ -33,6 +33,11 @@ const VIEWS = {
 };
 
 class AppView extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.getAllEarthquakesData = this.getAllEarthquakesData.bind(this);
+  }
+
   componentDidMount() {
     this.bootAppData();
   }
@@ -77,6 +82,12 @@ class AppView extends React.Component {
     );
   }
 
+  getAllEarthquakesData() {
+    this.props.updateCurrentView(VIEW_FLOW.LOADING_ANIMATION);
+    this.props.updateAttribute({ loaded: false });
+    this.props.getNearbyData({ ...this.props.userPosition, level: 'LOW'});
+  }
+
   setMainView(view) {
     this.props.updateAttribute({ mainView: view });
     this.props.updateCurrentView(view);
@@ -91,7 +102,7 @@ class AppView extends React.Component {
           <HeaderView />
         </div>
         <div className="App-content">
-          <CurrentView />
+          <CurrentView getAllEarthquakesData={this.getAllEarthquakesData} />
         </div>
       </div>
     );
