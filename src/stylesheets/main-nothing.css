@@ -1,6 +1,14 @@
-.main-nothing {
+.main-nothing {}
+
+.main-nothing-text {
   background-color: lightgray;
   font-size: larger;
   margin: 10px auto 5px auto;
   width: 75%;
 }
+
+.main-nothing-earthquakes-button-block {
+  margin: 5px auto 5px auto;
+}
+
+.main-nothing-earthquakes-button {}

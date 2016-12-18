@@ -7,7 +7,7 @@ import '../../stylesheets/main-bus-list.css';
 
 
 function BusList(props) {
-  const { closestFiveVehicles } = props;
+  const { closestFiveVehicles, getAllEarthquakesData } = props;
 
   const busList = closestFiveVehicles.map((vehicle) => <BusListItem {...vehicle} />);
 
@@ -18,12 +18,19 @@ function BusList(props) {
       <div className="main-bus-list">
         {busList}
       </div>
+      <div className="main-bus-earthquakes-button-block">
+        <input className="small-button main-bus-earthquakes-button" type="button"
+               value="No, I SWEAR I felt something. Show me what earthquakes you got"
+               onClick={getAllEarthquakesData}
+        />
+      </div>
     </div>
   );
 }
 
 BusList.propTypes = {
   closestFiveVehicles: PropTypes.array,
+  getAllEarthquakesData: PropTypes.func,
 };
 
 function mapStateToProps(state) {
