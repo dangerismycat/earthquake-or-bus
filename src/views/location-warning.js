@@ -24,9 +24,10 @@ function LocationWarning(props) {
     `;
   } else if (locationError === LOCATION_ERRORS.NO_LOCATION) {
     warningText = `
-      Hm...it looks like you don't have location services turned on.
-      This app needs to know where you are to determine what you just felt.
-      Please refresh the page and allow location services in order to use this app.
+      Hm...it looks like you don't have location services turned on, or you're
+      on 'http' instead of 'https'. This app needs to know where you are to
+      determine what you just felt. Please make sure you're using https,
+      refresh the page, and allow location services in order to use this app.
     `;
   } else if (locationError === LOCATION_ERRORS.LOCATION_ERROR) {
     warningText = `
