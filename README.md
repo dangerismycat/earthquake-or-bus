@@ -70,7 +70,7 @@ dependencies and add the various dependencies and scripts it includes.
 
 
 ## TODO
-- more tests are always nice
+- `expect.any` errors?
 - better error handling
 - add support for other cities (anywhere a public transit API is available that
 gives current vehicle positions)
