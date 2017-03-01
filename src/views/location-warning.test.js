@@ -20,13 +20,6 @@ it('renders without crashing', () => {
 
 
 /*** getWarningText helper ***/
-// `expect.any` not currently supported in react-scripts 0.9.3?
-// it('accepts a string', () => {
-//   const mock = jest.fn();
-//   getWarningText(mock);
-//   expect(mock).toBeCalledWith(expect.any(String));
-// });
-
 it('returns a string', () => {
   expect(typeof getWarningText()).toBe('string');
 });
