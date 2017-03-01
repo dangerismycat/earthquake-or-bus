@@ -8,7 +8,7 @@ const nearbyDistance = 1300;
 
 function getMuniData(req, res) {
   if (!req.body || !req.body.lat || !req.body.long) {
-    // TODO: early exit response (with error message?)
+    throw new Error('No request or request LatLong');
   }
   const userLatLong = req.body;
 

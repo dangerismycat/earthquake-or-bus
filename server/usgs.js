@@ -30,7 +30,7 @@ function isSignificant(quake) {
 
 function getNearbyEarthquakes(req, res) {
   if (!req.body || !req.body.lat || !req.body.long) {
-    // TODO: early exit response (with error message?)
+    throw new Error('No request or request LatLong');
   }
   const userLatLong = { lat: req.body.lat, long: req.body.long };
   const sensitivityLevel = req.body.level || 'MID';
