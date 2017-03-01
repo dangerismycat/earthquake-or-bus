@@ -54,11 +54,11 @@ it('throws on invalid args', () => {
 
 it('returns an array of objects', () => {
   const expectedResponse = [{
-    name: expect.any(),
-    distance: expect.any(),
+    name: expect.anything(),
+    distance: expect.anything(),
   }, {
-    name: expect.any(),
-    distance: expect.any(),
+    name: expect.anything(),
+    distance: expect.anything(),
   }];
 
   expect(MUNI.processMuniResponse(mockResponse, mockUserLatLong)).toEqual(expect.arrayContaining(expectedResponse));
