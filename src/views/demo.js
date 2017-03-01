@@ -23,7 +23,7 @@ class Demo extends React.Component {
   render() {
     const demoButtons = map(DEMO_LOCATIONS, (location) => (
       <input className="demo-button" type="button"
-             value={location.name}
+             value={location.name} key={location.name}
              onClick={() => this.handleButtonClick({ lat: location.lat, long: location.long })}
       />
     ));
