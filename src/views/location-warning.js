@@ -8,33 +8,41 @@ import { updateCurrentView as updateCurrentViewAction } from '../action-creators
 import '../stylesheets/location-warning.css';
 
 
-function LocationWarning(props) {
-  const { locationError } = props;
-
+export function getWarningText(error) {
   let warningText = `
     That's weird. Some unknown error happened...please refresh and try again!
   `;
-  const refreshButton = <input className="small-button location-warning-refresh-button" type="button"
-                               value="Refresh!" onClick={() => window.location.reload(true)} />;
 
-  if (locationError === LOCATION_ERRORS.OUTSIDE_SF) {
+  if (error === LOCATION_ERRORS.OUTSIDE_SF) {
     warningText = `
       Hm...it looks like you're trying to use this app from outside San Francisco.
       Unfortunately it only works within SF...sorry about that!
     `;
-  } else if (locationError === LOCATION_ERRORS.NO_LOCATION) {
+  } else if (error === LOCATION_ERRORS.NO_LOCATION) {
     warningText = `
       Hm...it looks like you don't have location services turned on, or you're
       on 'http' instead of 'https'. This app needs to know where you are to
       determine what you just felt. Please make sure you're using https,
       refresh the page, and allow location services in order to use this app.
     `;
-  } else if (locationError === LOCATION_ERRORS.LOCATION_ERROR) {
+  } else if (error === LOCATION_ERRORS.LOCATION_ERROR) {
     warningText = `
       Hm...it looks like there was an error detecting your location.
       Please refresh and try again!
     `;
   }
+
+  return warningText;
+}
+
+function LocationWarning(props) {
+  const { locationError } = props;
+
+  const warningText = getWarningText(locationError);
+  const refreshButton = locationError === LOCATION_ERRORS.OUTSIDE_SF ? null : (
+    <input className="small-button location-warning-refresh-button" type="button"
+           value="Refresh!" onClick={() => window.location.reload(true)} />
+  );
 
   return (
     <div className="location-warning">
@@ -42,7 +50,7 @@ function LocationWarning(props) {
         <div className="location-warning-text">
           {warningText}
         </div>
-        {locationError !== LOCATION_ERRORS.OUTSIDE_SF ? refreshButton : null}
+        {refreshButton}
         <div className="location-demo">
           <input className="small-button location-demo-button" type="button"
                  value="Whatever, just show me a demo"
