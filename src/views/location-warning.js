@@ -55,7 +55,7 @@ function LocationWarning(props) {
 }
 
 LocationWarning.propTypes = {
-  locationError: PropTypes.object,
+  locationError: PropTypes.string,
   updateCurrentView: PropTypes.func,
 };
 
