@@ -2,6 +2,14 @@
 // Uses the haversine formula for great-circle distances: https://en.wikipedia.org/wiki/Haversine_formula
 // Accepts latLong objects in decimal form. Yields distance in meters.
 function distanceBetweenTwoPoints(latLong1, latLong2) {
+  if (!latLong1 || !latLong2) {
+    throw new Error('Cannot determine distance between a single point');
+  }
+  if (!latLong1.lat || !latLong1.long || !latLong2.lat || !latLong2.long) {
+    throw new Error('LatLong objects in invalid format');
+  }
+
+
   const { lat: lat1, long: long1 } = latLong1;
   const { lat: lat2, long: long2 } = latLong2;
   // approximate radius of the Earth in meters
@@ -21,18 +29,34 @@ function distanceBetweenTwoPoints(latLong1, latLong2) {
 }
 
 function convertMetersToFeet(number) {
+  if (typeof number !== 'number') {
+    throw new Error('Number to convert must be a number');
+  }
+
   return number * 3.280839895;
 }
 
 function convertMetersToMiles(number) {
+  if (typeof number !== 'number') {
+    throw new Error('Number to convert must be a number');
+  }
+
   return number * 0.000621371192;
 }
 
 function toDegrees(number) {
+  if (typeof number !== 'number') {
+    throw new Error('Number to convert must be a number');
+  }
+
   return number * 180 / Math.PI;
 }
 
 function toRadians(number) {
+  if (typeof number !== 'number') {
+    throw new Error('Number to convert must be a number');
+  }
+
   return number * Math.PI / 180;
 }
 
