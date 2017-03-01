@@ -3,14 +3,14 @@ import { ACTIONS, VIEW_FLOW } from './constants';
 import createReducer from './utils/create-reducer';
 
 
-function updateAttribute(state, { payload }) {
+export function updateAttribute(state, { payload }) {
   return {
     ...state,
     ...payload,
   }
 }
 
-function updateCurrentView(state, { view }) {
+export function updateCurrentView(state, { view }) {
   return {
     ...state,
     currentView: view,
