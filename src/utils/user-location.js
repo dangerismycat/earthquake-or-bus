@@ -14,6 +14,11 @@ export function extractUserLatLong(positionObject) {
 }
 
 export function isInSF(userLatLong) {
+  if (!userLatLong || !userLatLong.lat || !userLatLong.long ||
+    typeof userLatLong.lat !== 'number' || typeof userLatLong.long !== 'number') {
+    return false;
+  }
+
   return (isInNorthSouthBounds(userLatLong.lat) && isInEastWestBounds(userLatLong.long));
 }
 
