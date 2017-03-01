@@ -40,6 +40,10 @@ function formatName({ lineRef, name }) {
 
 // 511's API yields a string with an invalid first character, so it needs to be removed
 function stupidMuniAPIWorkaround(response) {
+  if (!response || typeof response !== 'string') {
+    throw new Error('Response must be a string');
+  }
+
   const firstChar = response.substring(0, 1);
   const firstCharCode = response.charCodeAt(0);
   if (firstCharCode == 65279) {
